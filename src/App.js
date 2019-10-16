@@ -111,28 +111,34 @@ class App extends React.Component {
 
     render() {
         return (
-          <div>
-            <h1>Search for Artist</h1>
-            <input
-              type="text"
-              value={this.state.query}
-              onChange={this.changeQuery}
-              placeholder="Search for artist..."
-            />
+          <div className="home">
 
-            <button onClick={this.getAlbums}>
-              Get Albums
-            </button>
+            <h1>Music Search</h1>
 
-            <button onClick={this.getSongs}>
-              Get Songs
-            </button>
+            <div className="header">
+                <div className="search-container">
+                    <input
+                      className="search-box"
+                      type="text"
+                      value={this.state.query}
+                      onChange={this.changeQuery}
+                      placeholder="Artist, Song, Album..."
+                    />
+                </div>
 
-            <button onClick={this.clearSearch}>
-              Clear Search
-            </button>
+                <button className="search-button" onClick={this.getAlbums}>
+                  Get Albums
+                </button>
 
-            <hr />
+                <button className="search-button" onClick={this.getSongs}>
+                  Get Songs
+                </button>
+
+                <button className="search-button" onClick={this.clearSearch}>
+                  Clear Search
+                </button>
+            </div>
+
             <Title title={this.state.title} />
 
             <SearchResult
@@ -143,6 +149,8 @@ class App extends React.Component {
               getAlbumSongs={this.getAlbumSongs}
             />
 
+
+            <footer>© 2019 Maximiliano Medeiros</footer>
           </div>
         );
     }

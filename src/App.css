@@ -1,0 +1,44 @@
+@media screen and (min-width: 415px){
+    .home {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title {
+        width: 80vw;
+        text-align: center;
+        padding-bottom: 2vh;
+        font-size: 5vh;
+        font-style: italic;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .search-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2vh;
+    }
+
+    .search-box {
+        margin-right: 0.5vw;
+    }
+
+    .search-button {
+        margin-right: 0.5vw;
+    }
+
+    footer {
+        border-top: black 1px solid;
+        margin-top: auto;
+        background-color: #a59898;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        width: 100vw;
+        align-self: center;
+        text-align: center
+    }
+
+}
