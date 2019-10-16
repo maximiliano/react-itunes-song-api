@@ -19,7 +19,8 @@ class SearchResult extends React.Component {
         return (
             <tr>
                 <th>Cover</th>
-                <th>Number</th>
+                <th>Disc #</th>
+                <th>Track #</th>
                 <th>Song</th>
                 <th>Album</th>
                 <th>Artist</th>
@@ -78,6 +79,7 @@ class Song extends React.Component {
         return (
             <tr>
                 <td><img src={this.props.song.artworkUrl60} alt="album cover" /></td>
+                <td>{this.props.song.discNumber}</td>
                 <td>{this.props.song.trackNumber}</td>
                 <td>{this.props.song.trackName}</td>
                 <td>{this.props.song.collectionName}</td>
