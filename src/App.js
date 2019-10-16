@@ -13,6 +13,7 @@ class App extends React.Component {
             songs: [],
             entity: "",
             empty_search: true,
+            loading: false,
         };
 
         this.getSongs = this.getSongs.bind(this);
@@ -50,7 +51,8 @@ class App extends React.Component {
         console.log("getAlbums() => ", url);
 
         this.setState({
-            title: this.state.query + " albums"
+            title: this.state.query + " albums",
+            loading: true
         })
 
         fetch(url)
@@ -59,7 +61,8 @@ class App extends React.Component {
                 console.log(data.results)
                 this.setState({
                     entity: "album",
-                    albums: data.results
+                    albums: data.results,
+                    loading: false
                 })
             })
             .catch(console.log)
@@ -72,7 +75,8 @@ class App extends React.Component {
         console.log("getSongs() => ", url);
 
         this.setState({
-            title: this.state.query + " songs"
+            title: this.state.query + " songs",
+            loading: true
         })
 
         fetch(url)
@@ -81,7 +85,8 @@ class App extends React.Component {
             console.log(data.results)
             this.setState({
               entity: "song",
-              songs: data.results
+              songs: data.results,
+              loading: false
             })
           })
           .catch(console.log)
@@ -131,6 +136,10 @@ class App extends React.Component {
     }
 
     showResult() {
+        if (this.state.loading) {
+            return <img src="loading.gif" alt="loading" />;
+        }
+
         if ((this.state.entity === "song" && this.state.songs.length === 0) ||
             (this.state.entity === "album" && this.state.albums.length === 0) ||
             (this.state.empty_search)) {
