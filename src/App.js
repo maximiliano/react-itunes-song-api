@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Title from './Title.js';
 
 
 class App extends React.Component {
@@ -7,6 +8,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             query: "",
+            title: "",
             albums: [],
             songs: [],
             entity: "",
@@ -34,6 +36,7 @@ class App extends React.Component {
     clearSearch() {
         this.setState({
             query: "",
+            title: "",
             songs: [],
             albums: [],
             empty_search: true,
@@ -45,6 +48,10 @@ class App extends React.Component {
         url += encodeURIComponent(this.state.query.replace(/ /g, "+"));
 
         console.log("getAlbums() => ", url);
+
+        this.setState({
+            title: this.state.query + " albums"
+        })
 
         fetch(url)
             .then(response => response.json())
@@ -63,6 +70,10 @@ class App extends React.Component {
         url += encodeURIComponent(this.state.query.replace(/ /g, "+"));
 
         console.log("getSongs() => ", url);
+
+        this.setState({
+            title: this.state.query + " songs"
+        })
 
         fetch(url)
           .then(response => response.json())
@@ -133,9 +144,6 @@ class App extends React.Component {
 
         return (
             <div>
-                <h1>Results:</h1>
-                <hr />
-
                 <table>
                     <thead>
                         {this.showHeader()}
@@ -172,7 +180,7 @@ class App extends React.Component {
             </button>
 
             <hr />
-
+            <Title title={this.state.title} />
             {this.showResult()}
           </div>
         );
