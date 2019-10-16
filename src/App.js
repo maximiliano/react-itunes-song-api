@@ -33,6 +33,7 @@ class App extends React.Component {
 
     clearSearch() {
         this.setState({
+            query: "",
             songs: [],
             albums: [],
             empty_search: true,
