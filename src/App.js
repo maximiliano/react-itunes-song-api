@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Title from './Title.js';
+import SearchResult from './SearchResult.js';
 
 
 class App extends React.Component {
@@ -9,18 +10,14 @@ class App extends React.Component {
         this.state = {
             query: "",
             title: "",
-            albums: [],
-            songs: [],
             entity: "",
+            results: [],
             empty_search: true,
             loading: false,
         };
 
         this.getSongs = this.getSongs.bind(this);
         this.getAlbums = this.getAlbums.bind(this);
-        this.showHeader = this.showHeader.bind(this);
-        this.showContent = this.showContent.bind(this);
-        this.showResult = this.showResult.bind(this);
         this.changeQuery = this.changeQuery.bind(this);
         this.clearSearch = this.clearSearch.bind(this);
     }
@@ -38,8 +35,7 @@ class App extends React.Component {
         this.setState({
             query: "",
             title: "",
-            songs: [],
-            albums: [],
+            results: [],
             empty_search: true,
         })
     }
@@ -52,6 +48,7 @@ class App extends React.Component {
 
         this.setState({
             title: this.state.query + " albums",
+            entity: "album",
             loading: true
         })
 
@@ -60,8 +57,7 @@ class App extends React.Component {
             .then((data) => {
                 console.log(data.results)
                 this.setState({
-                    entity: "album",
-                    albums: data.results,
+                    results: data.results,
                     loading: false
                 })
             })
@@ -76,6 +72,7 @@ class App extends React.Component {
 
         this.setState({
             title: this.state.query + " songs",
+            entity: "song",
             loading: true
         })
 
@@ -84,86 +81,13 @@ class App extends React.Component {
           .then((data) => {
             console.log(data.results)
             this.setState({
-              entity: "song",
-              songs: data.results,
+              results: data.results,
               loading: false
             })
           })
           .catch(console.log)
     }
 
-    showHeader() {
-        if (this.state.entity === "album") {
-            return (
-                <tr>
-                    <th>Cover</th>
-                    <th>Album</th>
-                    <th>Artist</th>
-                    <th>Genre</th>
-                    <th>Songs</th>
-                    <th>Year</th>
-                </tr>
-            )
-        }
-
-        return (
-            <tr>
-                <th>Cover</th>
-                <th>Number</th>
-                <th>Song</th>
-                <th>Album</th>
-                <th>Artist</th>
-            </tr>
-        )
-    }
-
-    showContent() {
-        if (this.state.entity === "album") {
-            return this.state.albums.map((album, index) => (
-                <Album
-                  key={index}
-                  album={album}>
-                </Album>
-            ));
-        }
-
-        return this.state.songs.map((song, index) => (
-            <Song
-              key={index}
-              song={song}>
-            </Song>
-        ));
-    }
-
-    showResult() {
-        if (this.state.loading) {
-            return <img src="loading.gif" alt="loading" />;
-        }
-
-        if ((this.state.entity === "song" && this.state.songs.length === 0) ||
-            (this.state.entity === "album" && this.state.albums.length === 0) ||
-            (this.state.empty_search)) {
-
-            return (
-                <div>
-                    <p>Nothing to show</p>
-                </div>
-            )
-        }
-
-        return (
-            <div>
-                <table>
-                    <thead>
-                        {this.showHeader()}
-                    </thead>
-                    <tbody>
-                        {this.showContent()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
 
     render() {
         return (
@@ -190,37 +114,15 @@ class App extends React.Component {
 
             <hr />
             <Title title={this.state.title} />
-            {this.showResult()}
+
+            <SearchResult
+              entity={this.state.entity}
+              loading={this.state.loading}
+              empty_search={this.state.empty_search}
+              results={this.state.results}
+            />
+
           </div>
-        );
-    }
-}
-
-class Song extends React.Component {
-    render() {
-        return (
-            <tr>
-                <td><img src={this.props.song.artworkUrl60} alt="album cover" /></td>
-                <td>{this.props.song.trackNumber}</td>
-                <td>{this.props.song.trackName}</td>
-                <td>{this.props.song.collectionName}</td>
-                <td>{this.props.song.artistName}</td>
-            </tr>
-        );
-    }
-}
-
-class Album extends React.Component {
-    render() {
-        return (
-            <tr>
-                <td><img src={this.props.album.artworkUrl60} alt="album cover" /></td>
-                <td>{this.props.album.collectionName}</td>
-                <td>{this.props.album.artistName}</td>
-                <td>{this.props.album.primaryGenreName}</td>
-                <td>{this.props.album.trackCount}</td>
-                <td>{this.props.album.releaseDate.slice(0, 4)}</td>
-            </tr>
         );
     }
 }
