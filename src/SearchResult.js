@@ -33,7 +33,8 @@ class SearchResult extends React.Component {
             return this.props.results.map((album, index) => (
                 <Album
                   key={index}
-                  album={album}>
+                  album={album}
+                  getAlbumSongs={this.props.getAlbumSongs}>
                 </Album>
             ));
         }
@@ -94,7 +95,13 @@ class Album extends React.Component {
         return (
             <tr>
                 <td><img src={this.props.album.artworkUrl60} alt="album cover" /></td>
-                <td>{this.props.album.collectionName}</td>
+                <td>
+                    <a
+                      href="/#"
+                      onClick={()=>this.props.getAlbumSongs(this.props.album.collectionId, this.props.album.collectionName)}>
+                        {this.props.album.collectionName}
+                    </a>
+                </td>
                 <td>{this.props.album.artistName}</td>
                 <td>{this.props.album.primaryGenreName}</td>
                 <td>{this.props.album.trackCount}</td>

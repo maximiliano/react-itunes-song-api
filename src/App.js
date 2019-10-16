@@ -18,6 +18,7 @@ class App extends React.Component {
 
         this.getSongs = this.getSongs.bind(this);
         this.getAlbums = this.getAlbums.bind(this);
+        this.getAlbumSongs = this.getAlbumSongs.bind(this);
         this.changeQuery = this.changeQuery.bind(this);
         this.clearSearch = this.clearSearch.bind(this);
     }
@@ -88,6 +89,29 @@ class App extends React.Component {
           .catch(console.log)
     }
 
+    getAlbumSongs(collectionId, collectionName) {
+        let url = "https://itunes.apple.com/lookup?media=music&entity=song&id=";
+        url += collectionId;
+
+        this.setState({
+            title: collectionName + " songs",
+            entity: "song",
+            loading: true
+        })
+
+        // First element of result is album meta info, we remove it before setting state
+        fetch(url)
+            .then(response => response.json())
+            .then((data) => {
+                console.log(data.results)
+                this.setState({
+                    results: data.results.slice(1),
+                    loading: false
+                })
+            })
+            .catch(console.log)
+    }
+
 
     render() {
         return (
@@ -120,6 +144,7 @@ class App extends React.Component {
               loading={this.state.loading}
               empty_search={this.state.empty_search}
               results={this.state.results}
+              getAlbumSongs={this.getAlbumSongs}
             />
 
           </div>
