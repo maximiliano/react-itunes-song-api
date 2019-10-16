@@ -45,8 +45,6 @@ class App extends React.Component {
         let url = "https://itunes.apple.com/search?media=music&entity=album&term="
         url += encodeURIComponent(this.state.query.replace(/ /g, "+"));
 
-        console.log("getAlbums() => ", url);
-
         this.setState({
             title: this.state.query + " albums",
             entity: "album",
@@ -56,7 +54,6 @@ class App extends React.Component {
         fetch(url)
             .then(response => response.json())
             .then((data) => {
-                console.log(data.results)
                 this.setState({
                     results: data.results,
                     loading: false
@@ -69,8 +66,6 @@ class App extends React.Component {
         let url = "https://itunes.apple.com/search?media=music&entity=song&term="
         url += encodeURIComponent(this.state.query.replace(/ /g, "+"));
 
-        console.log("getSongs() => ", url);
-
         this.setState({
             title: this.state.query + " songs",
             entity: "song",
@@ -80,7 +75,6 @@ class App extends React.Component {
         fetch(url)
           .then(response => response.json())
           .then((data) => {
-            console.log(data.results)
             this.setState({
               results: data.results,
               loading: false
@@ -103,7 +97,6 @@ class App extends React.Component {
         fetch(url)
             .then(response => response.json())
             .then((data) => {
-                console.log(data.results)
                 this.setState({
                     results: data.results.slice(1),
                     loading: false
@@ -111,7 +104,6 @@ class App extends React.Component {
             })
             .catch(console.log)
     }
-
 
     render() {
         return (
