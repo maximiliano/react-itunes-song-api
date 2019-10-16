@@ -4,6 +4,10 @@ import Title from './Title.js';
 import SearchResult from './SearchResult.js';
 
 
+const SEARCH_URL = "https://itunes.apple.com/search?";
+const LOOKUP_URL = "https://itunes.apple.com/lookup?";
+
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -42,8 +46,8 @@ class App extends React.Component {
     }
 
     getAlbums() {
-        let url = "https://itunes.apple.com/search?media=music&entity=album&term="
-        url += encodeURIComponent(this.state.query.replace(/ /g, "+"));
+        let urlParams = "media=music&entity=album&limit=200&term="
+        urlParams += encodeURIComponent(this.state.query.replace(/ /g, "+"));
 
         this.setState({
             title: this.state.query + " albums",
@@ -51,7 +55,7 @@ class App extends React.Component {
             loading: true
         })
 
-        fetch(url)
+        fetch(SEARCH_URL + urlParams)
             .then(response => response.json())
             .then((data) => {
                 this.setState({
@@ -63,8 +67,8 @@ class App extends React.Component {
     }
 
     getSongs() {
-        let url = "https://itunes.apple.com/search?media=music&entity=song&term="
-        url += encodeURIComponent(this.state.query.replace(/ /g, "+"));
+        let urlParams = "media=music&entity=song&limit=200&term="
+        urlParams += encodeURIComponent(this.state.query.replace(/ /g, "+"));
 
         this.setState({
             title: this.state.query + " songs",
@@ -72,7 +76,7 @@ class App extends React.Component {
             loading: true
         })
 
-        fetch(url)
+        fetch(SEARCH_URL + urlParams)
           .then(response => response.json())
           .then((data) => {
             this.setState({
@@ -84,8 +88,8 @@ class App extends React.Component {
     }
 
     getAlbumSongs(collectionId, collectionName) {
-        let url = "https://itunes.apple.com/lookup?media=music&entity=song&id=";
-        url += collectionId;
+        let urlParams = "media=music&entity=song&limit=200&id=";
+        urlParams += collectionId;
 
         this.setState({
             title: collectionName + " songs",
@@ -94,7 +98,7 @@ class App extends React.Component {
         })
 
         // First element of result is album meta info, we remove it before setting state
-        fetch(url)
+        fetch(LOOKUP_URL + urlParams)
             .then(response => response.json())
             .then((data) => {
                 this.setState({
