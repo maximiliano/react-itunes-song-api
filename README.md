@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Table of Contents
 
-## Available Scripts
+<!-- MarkdownTOC autolink="true" autoanchor="true" levels="1,2,3" -->
 
-In the project directory, you can run:
+- [How to Use](#how-to-use)
+- [App Documentation](#app-documentation)
+    - [Requirements](#requirements)
+    - [Install Instruction](#install-instruction)
+    - [Work environment used](#work-environment-used)
 
-### `npm start`
+<!-- /MarkdownTOC -->
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<a id="how-to-use"></a>
+# How to Use
+This project allows the user to search for an artist, album or song name and display a list of songs or album.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The music information is loaded from iTunes API directly.
 
-### `npm test`
+- Search Bar: Receives user input for artist, album or song name.
+- Get Albums: Lists only albums that match the criteria.
+    + In the album list, if you click on the album name the system will load only the songs of that album.
+- Get Songs: Lists only songs that match the criteria.
+- Clear Search: Start search from scratch.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<a id="app-documentation"></a>
+# App Documentation
 
-### `npm run build`
+<a id="requirements"></a>
+## Requirements
+To run this project you must have the newest versions of `node` and `npm`.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<a id="install-instruction"></a>
+## Install Instruction
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1. Clone repository: `$ git clone git@github.com:maximiliano/react-itunes-song-api.git`
+2. `$ cd react-itunes-song-api`
+3. Install dependencies: `$ npm install`
+4. Start development server to test it: `$ npm start`
+5. OR, create a build to deploy: `$ npm run build`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**NOTE:** This project is configured to run on the [http://maximiliano.github.io/music-search/](http://maximiliano.github.io/music-search/) URL, so the API requests to iTunes won't load locally because of CORS, unless you change some configurations.
 
-### `npm run eject`
+<a id="work-environment-used"></a>
+## Work environment used
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Computer:
+  + MacBook Air (13-inch, Early 2014)
+  + Processor: 1,4 GHz Intel Core i5
+  + Memory: 4 GB 1600 MHz DDR3
+  + Storage: 120 GB SSD
+- Operating System
+  + macOS Mojave
+  + Version: 10.14.6
+- Software:
+  + Text Editor: Sublime Text 3
+  + Terminal: iTerm
+  + Databases: None
+  + Libraries: React.js
+  + API tests: curl
+  + Browsers: Safari and Chrome
