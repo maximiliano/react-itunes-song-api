@@ -126,17 +126,19 @@ class App extends React.Component {
                     />
                 </div>
 
-                <button className="search-button" onClick={this.getAlbums}>
-                  Get Albums
-                </button>
+                <div className="buttons-container">
+                    <button className="search-button" onClick={this.getAlbums}>
+                      Get Albums
+                    </button>
 
-                <button className="search-button" onClick={this.getSongs}>
-                  Get Songs
-                </button>
+                    <button className="search-button" onClick={this.getSongs}>
+                      Get Songs
+                    </button>
 
-                <button className="search-button" onClick={this.clearSearch}>
-                  Clear Search
-                </button>
+                    <button className="search-button" onClick={this.clearSearch}>
+                      Clear Search
+                    </button>
+                </div>
             </div>
 
             <Title title={this.state.title} />
