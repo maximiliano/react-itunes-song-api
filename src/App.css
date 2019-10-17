@@ -47,6 +47,33 @@ body {
     max-width: max-content;
 }
 
+.card {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    background-color: #d3eef8;
+    border-radius: 3vw;
+    margin-bottom: 1vh;
+    align-items: center;
+}
+
+.card-img {
+    margin: 0 2vw;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    margin-left: 5vw;
+}
+
+.card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 footer {
     border-top: black 1px solid;
     margin-top: auto;
