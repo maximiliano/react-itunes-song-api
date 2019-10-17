@@ -70,7 +70,7 @@ class Album extends React.Component {
                 <div className="card-content">
                     <p><a
                       href="/#"
-                      onClick={()=>this.props.getAlbumSongs(this.props.album.collectionId, this.props.album.collectionName)}>
+                      onClick={ e => this.props.getAlbumSongs(e, this.props.album.collectionId, this.props.album.collectionName)}>
                         {this.props.album.collectionName}</a></p>
                     <p>{this.props.album.artistName}</p>
 

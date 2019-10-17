@@ -86,7 +86,9 @@ class App extends React.Component {
           .catch(console.log)
     }
 
-    getAlbumSongs(collectionId, collectionName) {
+    getAlbumSongs(event, collectionId, collectionName) {
+        event.preventDefault();
+
         let urlParams = "media=music&entity=song&limit=200&id=";
         urlParams += collectionId;
 
