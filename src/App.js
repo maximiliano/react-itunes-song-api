@@ -16,7 +16,7 @@ class App extends React.Component {
             title: "",
             entity: "",
             results: [],
-            empty_search: true,
+            nothing_found: false,
             loading: false,
         };
 
@@ -28,11 +28,8 @@ class App extends React.Component {
     }
 
     changeQuery(event) {
-        let query = event.target.value;
-
         this.setState({
-            query: query,
-            empty_search: query.trim().length === 0
+            query: event.target.value
         })
     }
 
@@ -41,7 +38,7 @@ class App extends React.Component {
             query: "",
             title: "",
             results: [],
-            empty_search: true,
+            nothing_found: false,
         })
     }
 
@@ -60,6 +57,7 @@ class App extends React.Component {
             .then((data) => {
                 this.setState({
                     results: data.results,
+                    nothing_found: data.results.length === 0,
                     loading: false
                 })
             })
@@ -81,6 +79,7 @@ class App extends React.Component {
           .then((data) => {
             this.setState({
               results: data.results,
+              nothing_found: data.results.length === 0,
               loading: false
             })
           })
@@ -146,7 +145,7 @@ class App extends React.Component {
             <SearchResult
               entity={this.state.entity}
               loading={this.state.loading}
-              empty_search={this.state.empty_search}
+              nothing_found={this.state.nothing_found}
               results={this.state.results}
               getAlbumSongs={this.getAlbumSongs}
             />

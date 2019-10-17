@@ -26,10 +26,10 @@ class SearchResult extends React.Component {
             return <img src="loading.gif" alt="loading" />;
         }
 
-        if (this.props.results.length === 0 || this.props.empty_search) {
+        if (this.props.nothing_found) {
             return (
                 <div>
-                    <p>Nothing to show</p>
+                    <p>Nothing found!</p>
                 </div>
             )
         }
