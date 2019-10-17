@@ -61,16 +61,7 @@ class SearchResult extends React.Component {
         }
 
         return (
-            <div>
-                <table>
-                    <thead>
-                        {this.showHeader()}
-                    </thead>
-                    <tbody>
-                        {this.showContent()}
-                    </tbody>
-                </table>
-            </div>
+            this.showContent()
         )
     }
 }
@@ -93,20 +84,22 @@ class Song extends React.Component {
 class Album extends React.Component {
     render() {
         return (
-            <tr>
-                <td><img src={this.props.album.artworkUrl60} alt="album cover" /></td>
-                <td>
-                    <a
+            <div className="album-card">
+                <div className="card-img"><img src={this.props.album.artworkUrl60} alt="album cover" /></div>
+                <div className="card-content">
+                    <p><a
                       href="/#"
                       onClick={()=>this.props.getAlbumSongs(this.props.album.collectionId, this.props.album.collectionName)}>
-                        {this.props.album.collectionName}
-                    </a>
-                </td>
-                <td>{this.props.album.artistName}</td>
-                <td>{this.props.album.primaryGenreName}</td>
-                <td>{this.props.album.trackCount}</td>
-                <td>{this.props.album.releaseDate.slice(0, 4)}</td>
-            </tr>
+                        {this.props.album.collectionName}</a></p>
+                    <p>{this.props.album.artistName}</p>
+
+                    <div className="card-footer">
+                        <p>Songs: {this.props.album.trackCount}</p>
+                        <p>Year: {this.props.album.releaseDate.slice(0, 4)}</p>
+                        <p>Genre: {this.props.album.primaryGenreName}</p>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
