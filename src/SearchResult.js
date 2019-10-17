@@ -2,32 +2,6 @@ import React from 'react';
 
 
 class SearchResult extends React.Component {
-    showHeader() {
-        if (this.props.entity === "album") {
-            return (
-                <tr>
-                    <th>Cover</th>
-                    <th>Album</th>
-                    <th>Artist</th>
-                    <th>Genre</th>
-                    <th>Songs</th>
-                    <th>Year</th>
-                </tr>
-            )
-        }
-
-        return (
-            <tr>
-                <th>Cover</th>
-                <th>Disc #</th>
-                <th>Track #</th>
-                <th>Song</th>
-                <th>Album</th>
-                <th>Artist</th>
-            </tr>
-        )
-    }
-
     showContent() {
         if (this.props.entity === "album") {
             return this.props.results.map((album, index) => (
