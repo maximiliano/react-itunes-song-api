@@ -110,7 +110,7 @@ footer {
         text-transform: uppercase;
     }
 
-    .album-card {
+    .card {
         display: flex;
         flex-direction: row;
         width: 90%;
@@ -120,18 +120,18 @@ footer {
         align-items: center;
     }
 
-    .album-card .card-img {
+    .card-img {
         margin: 0 2vw;
     }
 
-    .album-card .card-content {
+    .card-content {
         display: flex;
         flex-direction: column;
         width: 100vw;
         margin-left: 5vw;
     }
 
-    .album-card .card-footer {
+    .card-footer {
         display: flex;
         flex-direction: row;
         justify-content: space-around;

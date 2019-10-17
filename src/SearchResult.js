@@ -69,14 +69,21 @@ class SearchResult extends React.Component {
 class Song extends React.Component {
     render() {
         return (
-            <tr>
-                <td><img src={this.props.song.artworkUrl60} alt="album cover" /></td>
-                <td>{this.props.song.discNumber}</td>
-                <td>{this.props.song.trackNumber}</td>
-                <td>{this.props.song.trackName}</td>
-                <td>{this.props.song.collectionName}</td>
-                <td>{this.props.song.artistName}</td>
-            </tr>
+            <div className="card">
+                <div className="card-img"><img src={this.props.song.artworkUrl60} alt="album cover" /></div>
+                <div className="card-content">
+
+                    <p>{this.props.song.trackName}</p>
+                    <p>{this.props.song.collectionName}</p>
+                    <p>{this.props.song.artistName}</p>
+
+                    <div className="card-footer">
+                        <p>Disc #: {this.props.song.discNumber}</p>
+                        <p>Track #: {this.props.song.trackNumber}</p>
+                    </div>
+                </div>
+            </div>
+
         );
     }
 }
@@ -84,7 +91,7 @@ class Song extends React.Component {
 class Album extends React.Component {
     render() {
         return (
-            <div className="album-card">
+            <div className="card">
                 <div className="card-img"><img src={this.props.album.artworkUrl60} alt="album cover" /></div>
                 <div className="card-content">
                     <p><a
